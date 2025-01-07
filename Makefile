@@ -11,10 +11,12 @@ OBJDIR      = obj
 # Sources
 SRCFILES    = \
 	$(SRCDIR)/main.c \
-	$(SRCDIR)/game_init.c
+	$(SRCDIR)/game_init.c \
+	$(SRCDIR)/gnl.c
 OBJFILES    = \
 	$(OBJDIR)/main.o \
-	$(OBJDIR)/game_init.o
+	$(OBJDIR)/game_init.o \
+	$(OBJDIR)/gnl.o
 
 # Compilation
 CC          = clang
@@ -27,11 +29,11 @@ all: $(NAME)
 $(NAME): $(OBJFILES)
 	@$(MAKE) -C $(LIBFTDIR)
 	@$(MAKE) -C $(MLXDIR)
-	$(CC) $(CFLAGS) $(OBJFILES) -L$(LIBFTDIR) -lft $(MLXFLAGS) -o $(NAME)
+	@$(CC) $(CFLAGS) $(OBJFILES) -L$(LIBFTDIR) -lft $(MLXFLAGS) -o $(NAME)
 	@echo "========== Compiled $(NAME) =========="
 
 $(OBJDIR)/%.o: $(SRCDIR)/%.c | $(OBJDIR)
-	$(CC) $(CFLAGS) -c $< -o $@
+	@$(CC) $(CFLAGS) -c $< -o $@
 
 $(OBJDIR):
 	@mkdir -p $(OBJDIR)

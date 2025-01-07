@@ -6,7 +6,7 @@
 /*   By: hemera <hemera@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 10:39:55 by tobesnar          #+#    #+#             */
-/*   Updated: 2025/01/07 14:17:02 by hemera           ###   ########.fr       */
+/*   Updated: 2025/01/07 19:27:21 by hemera           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,5 +77,6 @@ int		on_keypress(int keycode, t_data *data);
 int		end(t_data *data);
 void	set_content(t_content *content);
 int		main(void);
+int get_next_line(int fd, char **line);
 
 #endif
