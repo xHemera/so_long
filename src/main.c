@@ -3,14 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tobesnar <tobesnar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hemera <hemera@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 10:37:46 by tobesnar          #+#    #+#             */
-/*   Updated: 2025/01/06 17:02:38 by tobesnar         ###   ########.fr       */
+/*   Updated: 2025/01/07 15:04:34 by hemera           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
+
+#define PIXEL	80;
 
 int	end(t_data *data)
 {
@@ -70,13 +72,15 @@ int	main(void)
 	mlx_hook(data.win_ptr, KeyPress, KeyPressMask, &on_keypress, &data);
 	set_sprite(&data);
 	mlx_put_image_to_window(data.mlx_ptr, data.win_ptr,
-		data.sprite.sprite_player, 1, 1);
+		data.sprite.sprite_player, 0, 0);
 	mlx_put_image_to_window(data.mlx_ptr, data.win_ptr,
-		data.sprite.sprite_floor, 81, 1);
+		data.sprite.sprite_floor, 80, 0);
 	mlx_put_image_to_window(data.mlx_ptr, data.win_ptr,
-		data.sprite.sprite_floor, 1, 81);
+		data.sprite.sprite_floor, 0, 80);
 	mlx_put_image_to_window(data.mlx_ptr, data.win_ptr,
-		data.sprite.sprite_floor, 81, 81);
+		data.sprite.sprite_floor, 80, 80);
+	mlx_put_image_to_window(data.mlx_ptr, data.win_ptr,
+		data.sprite.sprite_wall, 160, 80);
 	mlx_loop(data.mlx_ptr);
 	return (0);
 }

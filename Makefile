@@ -28,7 +28,7 @@ $(NAME): $(OBJFILES)
 	@$(MAKE) -C $(LIBFTDIR)
 	@$(MAKE) -C $(MLXDIR)
 	$(CC) $(CFLAGS) $(OBJFILES) -L$(LIBFTDIR) -lft $(MLXFLAGS) -o $(NAME)
-	@echo "[\033[32mCompiled\033[0m] $(NAME)"
+	@echo "========== Compiled $(NAME) =========="
 
 $(OBJDIR)/%.o: $(SRCDIR)/%.c | $(OBJDIR)
 	$(CC) $(CFLAGS) -c $< -o $@
@@ -41,12 +41,12 @@ clean:
 	@$(MAKE) clean -C $(LIBFTDIR)
 	@$(MAKE) clean -C $(MLXDIR)
 	@rm -rf $(OBJDIR)
-	@echo "[\033[31mCleaned\033[0m] Object files"
+	@echo "========== Cleaned Object files =========="
 
 fclean: clean
 	@$(MAKE) fclean -C $(LIBFTDIR)
 	@rm -f $(NAME)
-	@echo "[\033[31mRemoved\033[0m] $(NAME)"
+	@echo "========== Removed $(NAME) =========="
 
 re: fclean all
 
