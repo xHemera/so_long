@@ -4,8 +4,8 @@ NAME        = so_long
 # Directories
 SRCDIR      = src
 INCDIR      = includes
-LIBFTDIR    = libft
-MLXDIR      = mlx
+LIBFTDIR    = includes/libft
+MLXDIR      = includes/mlx
 OBJDIR      = obj
 
 # Sources
