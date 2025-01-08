@@ -12,11 +12,13 @@ OBJDIR      = obj
 SRCFILES    = \
 	$(SRCDIR)/main.c \
 	$(SRCDIR)/game_init.c \
-	$(SRCDIR)/gnl.c
+	$(SRCDIR)/get_next_line.c \
+	$(SRCDIR)/get_next_line_utils.c
 OBJFILES    = \
 	$(OBJDIR)/main.o \
 	$(OBJDIR)/game_init.o \
-	$(OBJDIR)/gnl.o
+	$(OBJDIR)/get_next_line.o \
+	$(OBJDIR)/get_next_line_utils.o
 
 # Compilation
 CC          = clang

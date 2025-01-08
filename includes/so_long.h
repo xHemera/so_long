@@ -3,15 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hemera <hemera@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tobesnar <tobesnar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 10:39:55 by tobesnar          #+#    #+#             */
-/*   Updated: 2025/01/07 19:27:21 by hemera           ###   ########.fr       */
+/*   Updated: 2025/01/08 14:26:17 by tobesnar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
+
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 1234
+# endif
 
 # include "libft/libft.h"
 # include "mlx/mlx.h"
@@ -22,6 +26,9 @@
 # include <stdlib.h>
 # include <X11/X.h>
 # include <X11/keysym.h>
+# include <sys/types.h>
+# include <sys/uio.h>
+
 
 typedef struct s_content
 {
@@ -77,6 +84,19 @@ int		on_keypress(int keycode, t_data *data);
 int		end(t_data *data);
 void	set_content(t_content *content);
 int		main(void);
-int get_next_line(int fd, char **line);
+
+char	*ft_strjoin(char const *s1, char const *s2);
+char	*ft_strchr(const char *string, int searchedChar);
+
+void	ft_bzero(void *s, size_t n);
+void	*ft_calloc(size_t elementCount, size_t elementSize);
+
+size_t	ft_strlen(const char *theString);
+
+char	*ft_free(char *buffer, char *buf);
+char	*ft_next(char *buffer);
+char	*ft_line(char *buffer);
+char	*read_file(int fd, char *res);
+char	*get_next_line(int fd);
 
 #endif
