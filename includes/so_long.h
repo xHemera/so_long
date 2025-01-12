@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tobesnar <tobesnar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hemera <hemera@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 10:39:55 by tobesnar          #+#    #+#             */
-/*   Updated: 2025/01/08 14:26:17 by tobesnar         ###   ########.fr       */
+/*   Updated: 2025/01/12 13:19:13 by hemera           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ void	set_sprite(t_data *data);
 int		on_keypress(int keycode, t_data *data);
 int		end(t_data *data);
 void	set_content(t_content *content);
-int		main(void);
+int	main(int argc, char *argv[]);
 
 char	*ft_strjoin(char const *s1, char const *s2);
 char	*ft_strchr(const char *string, int searchedChar);
