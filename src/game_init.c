@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game_init.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tobesnar <tobesnar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hemera <hemera@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 14:19:09 by tobesnar          #+#    #+#             */
-/*   Updated: 2025/01/06 14:32:55 by tobesnar         ###   ########.fr       */
+/*   Updated: 2025/01/13 11:50:30 by hemera           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 void	set_content(t_content *content)
 {
-	content->exit = 'E';
-	content->player = 'P';
+	content->exit = 'e';
+	content->player = 'p';
 	content->wall = '1';
 	content->space = '0';
-	content->collect = 'C';
+	content->collect = 'c';
 }
 
 void	set_sprite(t_data *data)
@@ -36,4 +36,12 @@ void	set_sprite(t_data *data)
 			data->sprite.floor, &(data->sprite.width), &(data->sprite.height));
 	data->sprite.sprite_player = mlx_xpm_file_to_image(data->mlx_ptr,
 			data->sprite.player, &(data->sprite.width), &(data->sprite.height));
+}
+
+int init_player(t_data data, int x, int y)
+{
+	data.position.x = x;
+	data.position.y = y;
+	printf("Position du joueur initialisée à X = %i, et Y = %i\n", data.position.x, data.position.y);
+	return (0);
 }

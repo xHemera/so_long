@@ -6,7 +6,7 @@
 /*   By: hemera <hemera@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 10:39:55 by tobesnar          #+#    #+#             */
-/*   Updated: 2025/01/12 13:19:13 by hemera           ###   ########.fr       */
+/*   Updated: 2025/01/13 11:54:30 by hemera           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,10 @@
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 1234
 # endif
+
+# define X(x)	(x * 80)
+# define Y(x)	(x * 80)
+# define TILE_SIZE	80
 
 # include "libft/libft.h"
 # include "mlx/mlx.h"
@@ -83,7 +87,11 @@ void	set_sprite(t_data *data);
 int		on_keypress(int keycode, t_data *data);
 int		end(t_data *data);
 void	set_content(t_content *content);
-int	main(int argc, char *argv[]);
+int		player_move(t_data *data, char dir);
+int		print_player(t_data *data);
+int		main(int argc, char *argv[]);
+int		init_player(t_data data, int x, int y);
+int 	print_map(t_data *data, int fd);
 
 char	*ft_strjoin(char const *s1, char const *s2);
 char	*ft_strchr(const char *string, int searchedChar);
