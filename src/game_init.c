@@ -6,7 +6,7 @@
 /*   By: tobesnar <tobesnar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 14:19:09 by tobesnar          #+#    #+#             */
-/*   Updated: 2025/01/13 15:46:29 by tobesnar         ###   ########.fr       */
+/*   Updated: 2025/01/13 22:13:59 by tobesnar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,3 +35,9 @@ int	init_player(t_data *data, int x, int y)
 		data->sprite.img_player, (x * 80), (y * 80));
 	return (0);
 }
+
+// int	init_tab(t_data, int fd)
+// {
+// 	whil
+// 	get_next_line(fd);
+// }
