@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hemera <hemera@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tobesnar <tobesnar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 10:39:55 by tobesnar          #+#    #+#             */
-/*   Updated: 2025/01/13 11:54:30 by hemera           ###   ########.fr       */
+/*   Updated: 2025/01/13 15:56:34 by tobesnar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,19 +33,6 @@
 # include <sys/types.h>
 # include <sys/uio.h>
 
-
-typedef struct s_content
-{
-	char	exit;
-	char	collect;
-	char	player;
-	char	wall;
-	char	space;
-	int		count_p;
-	int		count_e;
-	int		count_c;
-}	t_content;
-
 typedef struct pos_s
 {
 	int		x;
@@ -54,11 +41,11 @@ typedef struct pos_s
 
 typedef struct s_sprite
 {
-	void	*sprite_floor;
-	void	*sprite_player;
-	void	*sprite_exit;
-	void	*sprite_wall;
-	void	*sprite_collect;
+	void	*img_floor;
+	void	*img_player;
+	void	*img_exit;
+	void	*img_wall;
+	void	*img_collect;
 
 	int		height;
 	int		width;
@@ -74,24 +61,21 @@ typedef struct s_data
 {
 	void		*mlx_ptr;
 	void		*win_ptr;
-	int			count;
 	t_sprite	sprite;
-	t_pos		position;
+	t_pos		pos;
 	int			width;
 	int			height;
-	t_content	content;
 	char		**map;
 }	t_data;
 
 void	set_sprite(t_data *data);
 int		on_keypress(int keycode, t_data *data);
 int		end(t_data *data);
-void	set_content(t_content *content);
 int		player_move(t_data *data, char dir);
 int		print_player(t_data *data);
 int		main(int argc, char *argv[]);
-int		init_player(t_data data, int x, int y);
-int 	print_map(t_data *data, int fd);
+int		init_player(t_data *data, int x, int y);
+int		print_map(t_data *data, int fd);
 
 char	*ft_strjoin(char const *s1, char const *s2);
 char	*ft_strchr(const char *string, int searchedChar);

@@ -3,16 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   game_display.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hemera <hemera@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tobesnar <tobesnar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 11:52:56 by hemera            #+#    #+#             */
-/*   Updated: 2025/01/13 11:53:16 by hemera           ###   ########.fr       */
+/*   Updated: 2025/01/13 15:56:57 by tobesnar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-int print_map(t_data *data, int fd)
+int print_img(t_data *data, int x, int y, char z)
+{
+	if (z == '1')
+		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
+			data->sprite.img_wall, (x * 80), (y * 80));
+	else if (z == '0')
+		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
+			data->sprite.img_floor, (x * 80), (y * 80));
+	return (0);
+}
+
+int	print_map(t_data *data, int fd)
 {
 	int		i;
 	int		j;
@@ -21,19 +32,14 @@ int print_map(t_data *data, int fd)
 	i = 0;
 	j = 0;
 	line = get_next_line(fd);
-	while (line != NULL)
+	while (line)
 	{
 		while (line[i])
 		{
-			if (line[i] == '1')
-				mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->sprite.sprite_wall, (i * TILE_SIZE), (j * TILE_SIZE));
-			else if (line[i] == '0')
-				mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->sprite.sprite_floor, (i * TILE_SIZE), (j * TILE_SIZE));
-			else if (line[i] == 'p')
-			{
-				mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->sprite.sprite_floor, (i * TILE_SIZE), (j * TILE_SIZE));
-				init_player(*data, i, j);
-			}
+			if (line[i] == 'p')
+				init_player(data, i, j);
+			else
+				print_img(data, i, j, line[i]);
 			i++;
 		}
 		i = 0;
@@ -43,8 +49,9 @@ int print_map(t_data *data, int fd)
 	return (0);
 }
 
-int print_player(t_data *data)
+int	print_player(t_data *data)
 {
-	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->sprite.sprite_player, (data->position.x * TILE_SIZE), (data->position.y * TILE_SIZE));
+	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
+		data->sprite.img_player, (data->pos.x * 80), (data->pos.y * 80));
 	return (0);
 }

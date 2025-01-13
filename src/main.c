@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hemera <hemera@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tobesnar <tobesnar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 10:37:46 by tobesnar          #+#    #+#             */
-/*   Updated: 2025/01/13 11:58:39 by hemera           ###   ########.fr       */
+/*   Updated: 2025/01/13 15:54:01 by tobesnar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,18 +23,18 @@ int	end(t_data *data)
 
 int	main(int argc, char *argv[])
 {
+	t_data	data;
+	int		fd;
+
 	if (argc != 2)
 		return (0);
 	else
 	{
-		t_data	data;
-		int fd;
-
 		fd = open(argv[1], O_RDONLY);
 		data.mlx_ptr = mlx_init();
 		if (!data.mlx_ptr)
 			return (1);
-		data.win_ptr = mlx_new_window(data.mlx_ptr, (X(8)), (Y(5)), "Test");
+		data.win_ptr = mlx_new_window(data.mlx_ptr, 1280, 800, "Test");
 		if (!data.win_ptr)
 			return (free(data.mlx_ptr), 1);
 		set_sprite(&data);
