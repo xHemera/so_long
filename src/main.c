@@ -6,7 +6,7 @@
 /*   By: tobesnar <tobesnar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 10:37:46 by tobesnar          #+#    #+#             */
-/*   Updated: 2025/01/15 15:14:39 by tobesnar         ###   ########.fr       */
+/*   Updated: 2025/01/15 15:21:49 by tobesnar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	main(int argc, char *argv[])
 		data.mlx_ptr = mlx_init();
 		if (!data.mlx_ptr)
 			return (1);
-		data.win_ptr = mlx_new_window(data.mlx_ptr, (data.height * 10), (data.width  * 10), "Test");
+		data.win_ptr = mlx_new_window(data.mlx_ptr, 1280, 800, "Test");
 		if (!data.win_ptr)
 			return (free(data.mlx_ptr), 1);
 		set_sprite(&data);

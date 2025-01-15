@@ -6,7 +6,7 @@
 /*   By: tobesnar <tobesnar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/12 13:04:40 by hemera            #+#    #+#             */
-/*   Updated: 2025/01/13 15:56:46 by tobesnar         ###   ########.fr       */
+/*   Updated: 2025/01/15 15:49:12 by tobesnar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	on_keypress(int keycode, t_data *data)
 	return (0);
 }
 
-int	player_move(t_data *data, char dir)
+void	player_move(t_data *data, char dir)
 {
 	mlx_put_image_to_window(
 		data->mlx_ptr, data->win_ptr, data->sprite.img_floor,
@@ -37,8 +37,11 @@ int	player_move(t_data *data, char dir)
 	else if (dir == 'a')
 		data->pos.x--;
 	else if (dir == 's')
+	{
+		printf("[=] Old position: X: %i, Y: %i\n", data->pos.x, data->pos.y);
 		data->pos.y++;
+		printf("Origin element type: %c\n", data->map_content[data->pos.x][data->pos.y]);
+	}
 	else if (dir == 'd')
 		data->pos.x++;
-	return (0);
 }

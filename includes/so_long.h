@@ -6,7 +6,7 @@
 /*   By: tobesnar <tobesnar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 10:39:55 by tobesnar          #+#    #+#             */
-/*   Updated: 2025/01/15 13:54:44 by tobesnar         ###   ########.fr       */
+/*   Updated: 2025/01/15 15:44:32 by tobesnar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ typedef struct s_data
 void	set_sprite(t_data *data);
 int		on_keypress(int keycode, t_data *data);
 int		end(t_data *data);
-int		player_move(t_data *data, char dir);
+void		player_move(t_data *data, char dir);
 int		print_player(t_data *data);
 int		main(int argc, char *argv[]);
 int		init_player(t_data *data, int x, int y);

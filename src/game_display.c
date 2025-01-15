@@ -6,7 +6,7 @@
 /*   By: tobesnar <tobesnar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 11:52:56 by hemera            #+#    #+#             */
-/*   Updated: 2025/01/15 15:07:03 by tobesnar         ###   ########.fr       */
+/*   Updated: 2025/01/15 15:23:30 by tobesnar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,12 @@ int	print_img(t_data *data, int x, int y, char z)
 	else if (z == '0')
 		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
 			data->sprite.img_floor, (x * 80), (y * 80));
+	else if (z == 'C')
+		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
+			data->sprite.img_collect, (x * 80), (y * 80));
+	else if (z == 'E')
+		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
+			data->sprite.img_exit, (x * 80), (y * 80));
 	return (0);
 }
 
@@ -35,7 +41,7 @@ int	print_map(t_data *data)
 		i = 0;
 		while (data->map_content[j][i])
 		{
-			if (data->map_content[j][i] == 'p')
+			if (data->map_content[j][i] == 'P')
 				init_player(data, i, j);
 			else
 				print_img(data, i, j, data->map_content[j][i]);
