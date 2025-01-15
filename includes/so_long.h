@@ -6,7 +6,7 @@
 /*   By: tobesnar <tobesnar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 10:39:55 by tobesnar          #+#    #+#             */
-/*   Updated: 2025/01/13 15:56:34 by tobesnar         ###   ########.fr       */
+/*   Updated: 2025/01/15 13:54:44 by tobesnar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ typedef struct s_data
 	t_pos		pos;
 	int			width;
 	int			height;
-	char		**map;
+	char		**map_content;
 }	t_data;
 
 void	set_sprite(t_data *data);
@@ -75,7 +75,8 @@ int		player_move(t_data *data, char dir);
 int		print_player(t_data *data);
 int		main(int argc, char *argv[]);
 int		init_player(t_data *data, int x, int y);
-int		print_map(t_data *data, int fd);
+int		print_map(t_data *data);
+int		init_tab(t_data *data, int fd);
 
 char	*ft_strjoin(char const *s1, char const *s2);
 char	*ft_strchr(const char *string, int searchedChar);

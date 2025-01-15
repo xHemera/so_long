@@ -6,7 +6,7 @@
 /*   By: tobesnar <tobesnar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 11:52:56 by hemera            #+#    #+#             */
-/*   Updated: 2025/01/13 15:56:57 by tobesnar         ###   ########.fr       */
+/*   Updated: 2025/01/15 14:14:43 by tobesnar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,27 +23,50 @@ int print_img(t_data *data, int x, int y, char z)
 	return (0);
 }
 
-int	print_map(t_data *data, int fd)
+// int	print_map(t_data *data, int fd)
+// {
+// 	int		i;
+// 	int		j;
+// 	char	*line;
+
+// 	i = 0;
+// 	j = 0;
+// 	line = get_next_line(fd);
+// 	while (line)
+// 	{
+// 		while (line[i])
+// 		{
+// 			if (line[i] == 'p')
+// 				init_player(data, i, j);
+// 			else
+// 				print_img(data, i, j, line[i]);
+// 			i++;
+// 		}
+// 		i = 0;
+// 		line = get_next_line(fd);
+// 		j++;
+// 	}
+// 	return (0);
+// }
+
+int	print_map(t_data *data)
 {
-	int		i;
-	int		j;
-	char	*line;
+	int	i;
+	int	j;
 
 	i = 0;
 	j = 0;
-	line = get_next_line(fd);
-	while (line)
+	while (data->map_content[j])
 	{
-		while (line[i])
+		i = 0;
+		while (data->map_content[j][i])
 		{
-			if (line[i] == 'p')
+			if (data->map_content[j][i] == 'p')
 				init_player(data, i, j);
 			else
-				print_img(data, i, j, line[i]);
+				print_img(data, i, j, data->map_content[j][i]);
 			i++;
 		}
-		i = 0;
-		line = get_next_line(fd);
 		j++;
 	}
 	return (0);

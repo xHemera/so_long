@@ -20,7 +20,7 @@ OBJFILES    = $(SRCFILES:$(SRCDIR)/%.c=$(OBJDIR)/%.o)
 
 # Compilation
 CC          = clang
-CFLAGS      = -Wall -Wextra -Werror -I$(INCDIR) -I$(LIBFTDIR) -I$(MLXDIR)
+CFLAGS      = -g -Wall -Wextra -Werror -I$(INCDIR) -I$(LIBFTDIR) -I$(MLXDIR)
 MLXFLAGS    = -L$(MLXDIR) -lmlx -lX11 -lXext
 
 # Couleurs

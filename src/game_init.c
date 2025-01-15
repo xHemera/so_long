@@ -6,7 +6,7 @@
 /*   By: tobesnar <tobesnar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 14:19:09 by tobesnar          #+#    #+#             */
-/*   Updated: 2025/01/13 22:13:59 by tobesnar         ###   ########.fr       */
+/*   Updated: 2025/01/15 13:42:47 by tobesnar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,53 @@ int	init_player(t_data *data, int x, int y)
 	return (0);
 }
 
-// int	init_tab(t_data, int fd)
-// {
-// 	whil
-// 	get_next_line(fd);
-// }
+int	init_tab(t_data *data, int fd)
+{
+	int			i;
+	char		*line;
+	static int	count = 0;
+	char		**old_map;
+
+	data->map_content = NULL;
+	old_map = NULL;
+	i = 0;
+	while (1)
+	{
+		line = get_next_line(fd);
+		if (!line)
+			break ;
+		count++;
+		if (data->map_content)
+			old_map = data->map_content;
+		data->map_content = ft_calloc(count + 1, sizeof(char *));
+		if (old_map)
+		{
+			i = -1;
+			while (old_map[++i])
+			{
+				data->map_content[i] = old_map[i];
+			}
+		}
+		data->map_content[i] = line;
+	}
+	data->height = count;
+	data->width = ft_strlen(data->map_content[0]);
+	i = -1;
+	while (data->map_content[++i])
+	{
+		ft_putstr_fd(data->map_content[i], 0);
+	}
+	return (0);
+}
+
+// while (line)
+	// {
+	// 	while (line[i])
+	// 	{
+	// 		data->map_content[count - 1][i] = line[i];
+	// 		i++;
+	// 	}
+	// 	i = 0;
+	// 	line = get_next_line(fd);
+	// 	count++;
+	// }
