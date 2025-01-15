@@ -6,7 +6,7 @@
 /*   By: tobesnar <tobesnar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/12 13:04:40 by hemera            #+#    #+#             */
-/*   Updated: 2025/01/15 15:49:12 by tobesnar         ###   ########.fr       */
+/*   Updated: 2025/01/15 16:20:07 by tobesnar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,16 +32,25 @@ void	player_move(t_data *data, char dir)
 	mlx_put_image_to_window(
 		data->mlx_ptr, data->win_ptr, data->sprite.img_floor,
 		(data->pos.x * 80), (data->pos.y * 80));
-	if (dir == 'w')
+	if (dir == 'w' && movement_is_possible(data, dir))
 		data->pos.y--;
-	else if (dir == 'a')
+	else if (dir == 'a' && movement_is_possible(data, dir))
 		data->pos.x--;
-	else if (dir == 's')
-	{
-		printf("[=] Old position: X: %i, Y: %i\n", data->pos.x, data->pos.y);
+	else if (dir == 's' && movement_is_possible(data, dir))
 		data->pos.y++;
-		printf("Origin element type: %c\n", data->map_content[data->pos.x][data->pos.y]);
-	}
-	else if (dir == 'd')
+	else if (dir == 'd' && movement_is_possible(data, dir))
 		data->pos.x++;
+}
+
+int movement_is_possible(t_data *data, char dir)
+{
+	if (dir == 'w')
+		return (data->map_content[data->pos.y - 1][data->pos.x] == '0');
+	else if (dir == 's')
+		return (data->map_content[data->pos.y + 1][data->pos.x] == '0');
+	else if (dir == 'a')
+		return (data->map_content[data->pos.y][data->pos.x - 1] == '0');
+	else if (dir == 'd')
+		return (data->map_content[data->pos.y][data->pos.x + 1] == '0');
+	return (0);
 }

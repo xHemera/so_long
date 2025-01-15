@@ -6,7 +6,7 @@
 /*   By: tobesnar <tobesnar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 10:39:55 by tobesnar          #+#    #+#             */
-/*   Updated: 2025/01/15 15:44:32 by tobesnar         ###   ########.fr       */
+/*   Updated: 2025/01/15 16:17:58 by tobesnar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ int		main(int argc, char *argv[]);
 int		init_player(t_data *data, int x, int y);
 int		print_map(t_data *data);
 int		init_tab(t_data *data, int fd);
+int movement_is_possible(t_data *data, char dir);
 
 char	*ft_strjoin(char const *s1, char const *s2);
 char	*ft_strchr(const char *string, int searchedChar);
