@@ -6,7 +6,7 @@
 /*   By: tobesnar <tobesnar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/12 13:04:40 by hemera            #+#    #+#             */
-/*   Updated: 2025/01/26 15:05:57 by tobesnar         ###   ########.fr       */
+/*   Updated: 2025/01/26 15:33:11 by tobesnar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,8 +88,5 @@ int	possible_move(t_data *data, char dir)
 
 int	chest_locked(t_data *data)
 {
-	if (data->score == data->collectible_amount)
-		return (0);
-	else
-		return (1);
+	return (!(data->score == data->collectible_amount));
 }
