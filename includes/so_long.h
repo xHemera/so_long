@@ -6,7 +6,7 @@
 /*   By: tobesnar <tobesnar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 10:39:55 by tobesnar          #+#    #+#             */
-/*   Updated: 2025/01/26 15:19:53 by tobesnar         ###   ########.fr       */
+/*   Updated: 2025/01/26 17:24:08 by tobesnar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,13 @@ typedef struct s_sprite
 	char	*exit;
 }	t_sprite;
 
+typedef struct s_count
+{
+	int	c;
+	int	p;
+	int	e;
+}	t_count;
+
 typedef struct s_data
 {
 	void		*mlx_ptr;
@@ -64,10 +71,11 @@ typedef struct s_data
 	t_sprite	sprite;
 	t_pos		pos;
 	int			score;
-	int			collectible_amount;
+	t_count		count;
 	int			width;
 	int			height;
 	char		**map_content;
+	int			mp;
 }	t_data;
 
 void		set_sprite(t_data *data);
@@ -82,7 +90,9 @@ int			init_tab(t_data *data, int fd);
 int			possible_move(t_data *data, char dir);
 void		add_score(t_data *data, char dir);
 void		get_direction(char dir, int *dx, int *dy);
-int			chest_locked(t_data *data);
+void		destroy_images(t_data *data);
+void		set_count(t_data *data);
+void		error_handler(char *err, t_data *data);
 
 char		*ft_strjoin(char const *s1, char const *s2);
 char		*ft_strchr(const char *string, int searchedChar);

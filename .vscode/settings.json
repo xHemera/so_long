@@ -8,6 +8,8 @@
 		"ranges": "c",
 		"span": "c",
 		"iterator": "c",
-		"vector": "c"
+		"vector": "c",
+		"random": "c",
+		"queue": "c"
 	}
 }

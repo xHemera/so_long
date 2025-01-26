@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: tobesnar <tobesnar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/13 11:52:56 by hemera            #+#    #+#             */
-/*   Updated: 2025/01/26 15:09:11 by tobesnar         ###   ########.fr       */
+/*   Created: 2025/01/13 11:52:56 by tobesnar          #+#    #+#             */
+/*   Updated: 2025/01/26 17:02:59 by tobesnar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,11 +45,6 @@ int	print_map(t_data *data)
 		{
 			if (data->map_content[j][i] == 'P')
 				init_player(data, i, j);
-			if (data->map_content[j][i] == 'C')
-			{
-				data->collectible_amount += 1;
-				print_img(data, i, j, data->map_content[j][i]);
-			}
 			else
 				print_img(data, i, j, data->map_content[j][i]);
 			i++;

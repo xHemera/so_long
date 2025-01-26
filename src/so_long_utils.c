@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: tobesnar <tobesnar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/12 13:04:40 by hemera            #+#    #+#             */
-/*   Updated: 2025/01/26 15:33:11 by tobesnar         ###   ########.fr       */
+/*   Created: 2025/01/12 13:04:40 by tobesnar          #+#    #+#             */
+/*   Updated: 2025/01/26 17:02:29 by tobesnar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,8 @@ void	player_move(t_data *data, char dir)
 	if (possible_move(data, dir))
 	{
 		add_score(data, dir);
+		data->mp += 1;
+		printf("count: %d\n", data->mp);
 		data->pos.x += dx;
 		data->pos.y += dy;
 	}
@@ -78,15 +80,13 @@ int	possible_move(t_data *data, char dir)
 		return (0);
 	if (data->map_content[new_y][new_x] == 'E')
 	{
-		if (chest_locked(data))
-			return (0);
+		if (data->score == data->count.c)
+		{
+			printf("Vous avez gagne en %i mouvement!\n", data->mp + 1);
+			end(data);
+		}
 		else
-			return (1);
+			return (0);
 	}
 	return (1);
-}
-
-int	chest_locked(t_data *data)
-{
-	return (!(data->score == data->collectible_amount));
 }

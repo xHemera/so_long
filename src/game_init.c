@@ -6,7 +6,7 @@
 /*   By: tobesnar <tobesnar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 14:19:09 by tobesnar          #+#    #+#             */
-/*   Updated: 2025/01/26 14:33:11 by tobesnar         ###   ########.fr       */
+/*   Updated: 2025/01/26 17:40:32 by tobesnar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ int	init_player(t_data *data, int x, int y)
 	data->pos.x = x;
 	data->pos.y = y;
 	data->score = 0;
+	data->mp = 0;
 	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
 		data->sprite.img_player, (x * 80), (y * 80));
 	return (0);
@@ -62,7 +63,8 @@ static char	**add_line_to_map(char **old_map, char *line, int count)
 		}
 		free(old_map);
 	}
-	new_map[i] = line;
+	new_map[i] = ft_strdup(line);
+	free(line);
 	return (new_map);
 }
 
@@ -85,12 +87,37 @@ int	init_tab(t_data *data, int fd)
 			return (-1);
 	}
 	i = 0;
-	while (data->map_content[i])
-	{
-		ft_putstr_fd(data->map_content[i], 0);
-		i++;
-	}
 	data->height = count;
 	data->width = ft_strlen(data->map_content[0]);
+	set_count(data);
 	return (0);
+}
+
+void	set_count(t_data *data)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	j = 0;
+	data->count.c = 0;
+	data->count.p = 0;
+	data->count.e = 0;
+	while (data->map_content[j])
+	{
+		while (data->map_content[j][i])
+		{
+			if (data->map_content[j][i] == 'C')
+				data->count.c += 1;
+			else if (data->map_content[j][i] == 'E')
+				data->count.e += 1;
+			else if (data->map_content[j][i] == 'P')
+				data->count.p += 1;
+			else if (!ft_isonly(data->map_content[j], "ECP01\n"))
+				error_handler("La carte contient un caractere interdit.", data);
+			i++;
+		}
+		i = 0;
+		j++;
+	}
 }

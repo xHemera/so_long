@@ -6,7 +6,7 @@
 /*   By: tobesnar <tobesnar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 11:52:24 by tobesnar          #+#    #+#             */
-/*   Updated: 2025/01/06 16:55:05 by tobesnar         ###   ########.fr       */
+/*   Updated: 2025/01/26 17:40:23 by tobesnar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ char			*ft_strnstr(const char *big, const char *little, size_t len);
 char			*ft_strrchr(const char *s, int c);
 int				ft_tolower(int c);
 int				ft_toupper(int c);
+int				ft_isonly(char *s, char *charset);
 
 //LIBRAIRIE PARTIE 2
 char			*ft_substr(char const *s, unsigned int start, size_t len);
