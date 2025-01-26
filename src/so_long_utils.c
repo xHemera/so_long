@@ -6,51 +6,90 @@
 /*   By: tobesnar <tobesnar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/12 13:04:40 by hemera            #+#    #+#             */
-/*   Updated: 2025/01/15 16:20:07 by tobesnar         ###   ########.fr       */
+/*   Updated: 2025/01/26 15:05:57 by tobesnar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-int	on_keypress(int keycode, t_data *data)
+void	get_direction(char dir, int *dx, int *dy)
 {
-	if (keycode == XK_Escape)
-		end(data);
-	if (keycode == XK_w)
-		player_move(data, 'w');
-	if (keycode == XK_a)
-		player_move(data, 'a');
-	if (keycode == XK_s)
-		player_move(data, 's');
-	if (keycode == XK_d)
-		player_move(data, 'd');
-	return (0);
+	*dx = 0;
+	*dy = 0;
+	if (dir == 'w')
+		*dy = -1;
+	else if (dir == 'a')
+		*dx = -1;
+	else if (dir == 's')
+		*dy = 1;
+	else if (dir == 'd')
+		*dx = 1;
+}
+
+void	add_score(t_data *data, char dir)
+{
+	int	dx;
+	int	dy;
+	int	new_x;
+	int	new_y;
+
+
+	get_direction(dir, &dx, &dy);
+	new_x = data->pos.x + dx;
+	new_y = data->pos.y + dy;
+	if (data->map_content[new_y][new_x] == 'C')
+	{
+		data->score += 1;
+		data->map_content[new_y][new_x] = '0';
+	}
 }
 
 void	player_move(t_data *data, char dir)
 {
+	int	dx;
+	int	dy;
+
+
+	get_direction(dir, &dx, &dy);
 	mlx_put_image_to_window(
 		data->mlx_ptr, data->win_ptr, data->sprite.img_floor,
 		(data->pos.x * 80), (data->pos.y * 80));
-	if (dir == 'w' && movement_is_possible(data, dir))
-		data->pos.y--;
-	else if (dir == 'a' && movement_is_possible(data, dir))
-		data->pos.x--;
-	else if (dir == 's' && movement_is_possible(data, dir))
-		data->pos.y++;
-	else if (dir == 'd' && movement_is_possible(data, dir))
-		data->pos.x++;
+	if (possible_move(data, dir))
+	{
+		add_score(data, dir);
+		data->pos.x += dx;
+		data->pos.y += dy;
+	}
 }
 
-int movement_is_possible(t_data *data, char dir)
+int	possible_move(t_data *data, char dir)
 {
-	if (dir == 'w')
-		return (data->map_content[data->pos.y - 1][data->pos.x] == '0');
-	else if (dir == 's')
-		return (data->map_content[data->pos.y + 1][data->pos.x] == '0');
-	else if (dir == 'a')
-		return (data->map_content[data->pos.y][data->pos.x - 1] == '0');
-	else if (dir == 'd')
-		return (data->map_content[data->pos.y][data->pos.x + 1] == '0');
-	return (0);
+	int	dx;
+	int	dy;
+	int	new_x;
+	int	new_y;
+
+	get_direction(dir, &dx, &dy);
+	new_x = data->pos.x + dx;
+	new_y = data->pos.y + dy;
+	if (new_x < 0 || new_y < 0 || new_x >= data->width || new_y >= data->height)
+		return (0);
+	if (data->map_content[new_y][new_x] == '1')
+		return (0);
+	if (data->map_content[new_y][new_x] == 'E')
+	{
+		if (chest_locked(data))
+			return (0);
+		else
+			return (1);
+	}
+	return (1);
+}
+
+int	chest_locked(t_data *data)
+{
+	if (data->score == data->collectible_amount)
+		return (0);
+	else
+		return (1);
 }

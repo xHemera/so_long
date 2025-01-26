@@ -6,7 +6,7 @@
 /*   By: tobesnar <tobesnar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 10:39:55 by tobesnar          #+#    #+#             */
-/*   Updated: 2025/01/15 16:17:58 by tobesnar         ###   ########.fr       */
+/*   Updated: 2025/01/26 15:19:53 by tobesnar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,34 +63,39 @@ typedef struct s_data
 	void		*win_ptr;
 	t_sprite	sprite;
 	t_pos		pos;
+	int			score;
+	int			collectible_amount;
 	int			width;
 	int			height;
 	char		**map_content;
 }	t_data;
 
-void	set_sprite(t_data *data);
-int		on_keypress(int keycode, t_data *data);
-int		end(t_data *data);
+void		set_sprite(t_data *data);
+int			on_keypress(int keycode, t_data *data);
+int			end(t_data *data);
 void		player_move(t_data *data, char dir);
-int		print_player(t_data *data);
-int		main(int argc, char *argv[]);
-int		init_player(t_data *data, int x, int y);
-int		print_map(t_data *data);
-int		init_tab(t_data *data, int fd);
-int movement_is_possible(t_data *data, char dir);
+int			print_player(t_data *data);
+int			main(int argc, char *argv[]);
+int			init_player(t_data *data, int x, int y);
+int			print_map(t_data *data);
+int			init_tab(t_data *data, int fd);
+int			possible_move(t_data *data, char dir);
+void		add_score(t_data *data, char dir);
+void		get_direction(char dir, int *dx, int *dy);
+int			chest_locked(t_data *data);
 
-char	*ft_strjoin(char const *s1, char const *s2);
-char	*ft_strchr(const char *string, int searchedChar);
+char		*ft_strjoin(char const *s1, char const *s2);
+char		*ft_strchr(const char *string, int searchedChar);
 
-void	ft_bzero(void *s, size_t n);
-void	*ft_calloc(size_t elementCount, size_t elementSize);
+void		ft_bzero(void *s, size_t n);
+void		*ft_calloc(size_t elementCount, size_t elementSize);
 
-size_t	ft_strlen(const char *theString);
+size_t		ft_strlen(const char *theString);
 
-char	*ft_free(char *buffer, char *buf);
-char	*ft_next(char *buffer);
-char	*ft_line(char *buffer);
-char	*read_file(int fd, char *res);
-char	*get_next_line(int fd);
+char		*ft_free(char *buffer, char *buf);
+char		*ft_next(char *buffer);
+char		*ft_line(char *buffer);
+char		*read_file(int fd, char *res);
+char		*get_next_line(int fd);
 
 #endif
