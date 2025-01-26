@@ -6,7 +6,7 @@
 /*   By: tobesnar <tobesnar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 10:37:46 by tobesnar          #+#    #+#             */
-/*   Updated: 2025/01/26 17:46:18 by tobesnar         ###   ########.fr       */
+/*   Updated: 2025/01/26 17:50:09 by tobesnar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,22 +44,21 @@ int	main(int argc, char *argv[])
 {
 	t_data	data;
 	int		fd;
-	int		fd2;
 
 	if (argc != 2)
 		return (0);
 	else
 	{
 		fd = open(argv[1], O_RDONLY);
-		fd2 = open(argv[1], O_RDONLY);
 		data.mlx_ptr = mlx_init();
 		if (!data.mlx_ptr)
 			return (1);
-		data.win_ptr = mlx_new_window(data.mlx_ptr, data.height, data.width, "so_long");
-		if (!data.win_ptr)
-			return (free(data.mlx_ptr), 1);
 		set_sprite(&data);
 		init_tab(&data, fd);
+		data.win_ptr = mlx_new_window(data.mlx_ptr,
+				(data.width * 80), (data.height * 80), "so_long");
+		if (!data.win_ptr)
+			return (free(data.mlx_ptr), 1);
 		print_map(&data);
 		mlx_hook(data.win_ptr, DestroyNotify, StructureNotifyMask, &end, &data);
 		mlx_hook(data.win_ptr, KeyPress, KeyPressMask, &on_keypress, &data);

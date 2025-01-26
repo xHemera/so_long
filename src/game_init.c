@@ -6,7 +6,7 @@
 /*   By: tobesnar <tobesnar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 14:19:09 by tobesnar          #+#    #+#             */
-/*   Updated: 2025/01/26 17:40:32 by tobesnar         ###   ########.fr       */
+/*   Updated: 2025/01/26 17:51:14 by tobesnar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ int	init_tab(t_data *data, int fd)
 	}
 	i = 0;
 	data->height = count;
-	data->width = ft_strlen(data->map_content[0]);
+	data->width = ft_strlen(data->map_content[0]) - 1;
 	set_count(data);
 	return (0);
 }
