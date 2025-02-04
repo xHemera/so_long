@@ -6,7 +6,7 @@
 /*   By: tobesnar <tobesnar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 10:37:46 by tobesnar          #+#    #+#             */
-/*   Updated: 2025/01/26 17:50:09 by tobesnar         ###   ########.fr       */
+/*   Updated: 2025/02/04 13:04:44 by tobesnar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,14 @@ int	end(t_data *data)
 		i++;
 	}
 	free(data->map_content);
-	mlx_destroy_window(data->mlx_ptr, data->win_ptr);
-	mlx_destroy_display(data->mlx_ptr);
-	free(data->mlx_ptr);
+	if (data->mlx_ptr != NULL)
+	{
+		if (data->win_ptr)
+			mlx_destroy_window(data->mlx_ptr, data->win_ptr);
+		mlx_destroy_display(data->mlx_ptr);
+		free(data->mlx_ptr);
+		data->mlx_ptr = NULL;
+	}
 	exit(0);
 	return (0);
 }
@@ -50,11 +55,13 @@ int	main(int argc, char *argv[])
 	else
 	{
 		fd = open(argv[1], O_RDONLY);
+		init_data(&data);
 		data.mlx_ptr = mlx_init();
 		if (!data.mlx_ptr)
 			return (1);
 		set_sprite(&data);
 		init_tab(&data, fd);
+		check_map_params(&data);
 		data.win_ptr = mlx_new_window(data.mlx_ptr,
 				(data.width * 80), (data.height * 80), "so_long");
 		if (!data.win_ptr)

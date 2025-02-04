@@ -6,7 +6,7 @@
 /*   By: tobesnar <tobesnar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 10:39:55 by tobesnar          #+#    #+#             */
-/*   Updated: 2025/01/26 17:24:08 by tobesnar         ###   ########.fr       */
+/*   Updated: 2025/02/04 13:14:20 by tobesnar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,8 @@ void		get_direction(char dir, int *dx, int *dy);
 void		destroy_images(t_data *data);
 void		set_count(t_data *data);
 void		error_handler(char *err, t_data *data);
+int			check_map_params(t_data *data);
+void		init_data(t_data *data);
 
 char		*ft_strjoin(char const *s1, char const *s2);
 char		*ft_strchr(const char *string, int searchedChar);
