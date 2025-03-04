@@ -6,7 +6,7 @@
 /*   By: tobesnar <tobesnar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/26 17:11:48 by tobesnar          #+#    #+#             */
-/*   Updated: 2025/02/04 13:17:20 by tobesnar         ###   ########.fr       */
+/*   Updated: 2025/03/03 12:26:03 by tobesnar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,4 @@ int	check_map_params(t_data *data)
 	if (data->count.p != 1)
 		error_handler("Il ne doit y avoir qu'un joueur.", data);
 	return (1);
-}
-
-void	flood_fill(t_data *data)
-{
-	write ;
 }

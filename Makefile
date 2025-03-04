@@ -17,7 +17,8 @@ SRCFILES    = \
 	$(SRCDIR)/get_next_line.c \
 	$(SRCDIR)/get_next_line_utils.c \
 	$(SRCDIR)/map_checker.c \
-	$(SRCDIR)/ft_isonly.c
+	$(SRCDIR)/ft_isonly.c \
+	$(SRCDIR)/verif.c
 OBJFILES    = $(SRCFILES:$(SRCDIR)/%.c=$(OBJDIR)/%.o)
 
 # Compilation
