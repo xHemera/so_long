@@ -1,71 +1,89 @@
-# Makefile so_long – Cosmétiquement stylé ✨
+# **************************************************************************** #
+#                                  VARIABLES                                   #
+# **************************************************************************** #
 
-NAME	= so_long
+NAME        = so_long
 
-# Directories
-SRCDIR	= src
-OBJDIR	= obj
-INCDIR	= includes
-LIBDIR	= includes/libft
-MLXDIR	= includes/mlx
+CC          = clang
+CFLAGS      = -Wall -Wextra -Werror -g
 
-# Sources
-SRC		= $(SRCDIR)/main.c \
-		  $(SRCDIR)/game_init.c \
-		  $(SRCDIR)/so_long_utils.c \
-		  $(SRCDIR)/game_display.c \
-		  $(SRCDIR)/get_next_line.c \
-		  $(SRCDIR)/get_next_line_utils.c \
-		  $(SRCDIR)/map_checker.c \
-		  $(SRCDIR)/ft_isonly.c \
-		  $(SRCDIR)/verify_chemin.c \
-		  $(SRCDIR)/verify_element.c \
-		  $(SRCDIR)/verify_map.c
+# ───── LIBFT ──────────────────────────────────────────────────────────────── #
 
-OBJ		= $(SRC:.c=.o)
-OBJF	= $(OBJ:$(SRCDIR)/%=$(OBJDIR)/%)
+LIBFT_PATH  = ./libft/
+LIBFT_FILE  = libft.a
+LIBFT_LIB   = $(addprefix $(LIBFT_PATH), $(LIBFT_FILE))
 
-# Compilation
-CC		= clang
-CFLAGS	= -Wall -Wextra -Werror -I$(INCDIR) -I$(LIBDIR) -I$(MLXDIR)
+# ───── MiniLibX ───────────────────────────────────────────────────────────── #
 
-# Colors
-GREEN	= \033[0;32m
-CYAN	= \033[0;36m
-RESET	= \033[0m
+MLX_PATH    = ./src/mlx/
+MLX_FILE    = libmlx.a
+MLX_FLAG    = -lX11 -lXext
+MLX_LIB     = $(addprefix $(MLX_PATH), $(MLX_FILE))
+MLX_EX      = $(MLX_LIB) $(MLX_FLAG)
 
-# Rules
+# ───── SOURCES ────────────────────────────────────────────────────────────── #
+
+SRC_DIR     = ./src/
+INC_DIR     = ./include/
+
+SO_LONG_FILE = main.c         \
+               mouvement.c    \
+               map.c          \
+               verif_map.c    \
+               verif_elt.c    \
+               read_map.c     \
+               verif_chemin.c \
+               exit.c
+
+SRC = $(addprefix $(SRC_DIR), $(SO_LONG_FILE))
+OBJ = $(SRC:.c=.o)
+
+# ───── COULEURS ───────────────────────────────────────────────────────────── #
+
+YELLOW = \033[1;33m
+GREEN  = \033[1;32m
+BLUE   = \033[1;34m
+RED    = \033[1;31m
+RESET  = \033[0m
+
+# **************************************************************************** #
+#                                    RULES                                     #
+# **************************************************************************** #
+
 all: $(NAME)
 
-$(NAME): message_libft message_mlx $(OBJF)
-	@echo "$(CYAN)🔧 Linking objects...$(RESET)"
-	@$(CC) $(OBJF) $(MLXDIR)/libmlx.a -L$(LIBDIR) -lft -lX11 -lXext -lm -o $(NAME)
-	@echo "$(GREEN)✅ Build complete: $(NAME)$(RESET)"
-
-$(OBJDIR)/%.o: $(SRCDIR)/%.c
-	@mkdir -p $(dir $@)
+.c.o:
 	@$(CC) $(CFLAGS) -c $< -o $@
-	@echo "$(CYAN)📦 Compiled: $<$(RESET)"
 
-message_libft:
-	@echo "$(CYAN)📚 Building Libft...$(RESET)"
-	@$(MAKE) -C $(LIBDIR) --silent
+prepare:
+	@-git clone https://github.com/42Paris/minilibx-linux.git $(MLX_PATH)
+	@echo "$(BLUE)📥 MiniLibX cloné dans $(MLX_PATH)$(RESET)"
 
-message_mlx:
-	@echo "$(CYAN)🖼️  Building MiniLibX...$(RESET)"
-	@$(MAKE) -C $(MLXDIR) --silent
+lib: prepare
+	@echo "$(BLUE)📦 Compilation de libft...$(RESET)"
+	@make -s -C $(LIBFT_PATH)
+	@echo "$(GREEN)✔ LIBFT prête.$(RESET)"
+
+mlx: $(MLX_PATH)
+	@echo "$(BLUE)🛠 Compilation de MiniLibX...$(RESET)"
+	@make -s -C $(MLX_PATH)
+	@echo "$(GREEN)✔ MLX prête.$(RESET)"
+
+$(NAME): lib mlx $(OBJ)
+	@$(CC) $(OBJ) $(LIBFT_LIB) $(MLX_EX) -o $(NAME)
+	@echo "$(GREEN)✔ $(NAME) compilé avec succès !$(RESET)"
 
 clean:
-	@echo "$(CYAN)🧹 Cleaning object files...$(RESET)"
-	@rm -rf $(OBJDIR)
-	@$(MAKE) -C $(LIBDIR) clean --silent
-	@$(MAKE) -C $(MLXDIR) clean --silent
+	@echo "$(YELLOW)🧹 Suppression des fichiers objets...$(RESET)"
+	@rm -f $(OBJ)
+	@make -s clean -C $(LIBFT_PATH)
 
 fclean: clean
-	@echo "$(CYAN)🗑️  Removing binary...$(RESET)"
+	@echo "$(RED)❌ Suppression de l'exécutable $(NAME)...$(RESET)"
 	@rm -f $(NAME)
-	@$(MAKE) -C $(LIBDIR) fclean --silent
+	@make -s fclean -C $(LIBFT_PATH)
+	@rm -rf $(MLX_PATH)
 
 re: fclean all
 
-.PHONY: all clean fclean re message_libft message_mlx
+.PHONY: all clean fclean re lib mlx prepare
