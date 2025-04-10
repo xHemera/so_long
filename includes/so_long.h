@@ -6,7 +6,7 @@
 /*   By: tobesnar <tobesnar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 10:39:55 by tobesnar          #+#    #+#             */
-/*   Updated: 2025/03/03 12:38:02 by tobesnar         ###   ########.fr       */
+/*   Updated: 2025/02/04 13:14:20 by tobesnar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,13 +64,6 @@ typedef struct s_count
 	int	e;
 }	t_count;
 
-typedef struct s_check
-{
-	int	item;
-	int	exit;
-	int	**checked;
-}				t_check;
-
 typedef struct s_data
 {
 	void		*mlx_ptr;
@@ -83,7 +76,6 @@ typedef struct s_data
 	int			height;
 	char		**map_content;
 	int			mp;
-	t_check		*checker;
 }	t_data;
 
 void		set_sprite(t_data *data);
@@ -117,11 +109,5 @@ char		*ft_next(char *buffer);
 char		*ft_line(char *buffer);
 char		*read_file(int fd, char *res);
 char		*get_next_line(int fd);
-
-void		free_checker(t_data *data);
-void		initialise_map_checker(t_data *data);
-int			is_checked(t_data *data, int y, int x);
-void		count_element(t_data *data, int y, int x);
-int			check_is_possible(t_data *data, int y, int x);
 
 #endif

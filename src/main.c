@@ -6,7 +6,7 @@
 /*   By: tobesnar <tobesnar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 10:37:46 by tobesnar          #+#    #+#             */
-/*   Updated: 2025/03/04 17:25:00 by tobesnar         ###   ########.fr       */
+/*   Updated: 2025/02/04 13:04:44 by tobesnar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,8 +66,6 @@ int	main(int argc, char *argv[])
 				(data.width * 80), (data.height * 80), "so_long");
 		if (!data.win_ptr)
 			return (free(data.mlx_ptr), 1);
-		initialise_map_checker(&data);
-		check_is_possible(&data, data.pos.y, data.pos.x);
 		print_map(&data);
 		mlx_hook(data.win_ptr, DestroyNotify, StructureNotifyMask, &end, &data);
 		mlx_hook(data.win_ptr, KeyPress, KeyPressMask, &on_keypress, &data);
