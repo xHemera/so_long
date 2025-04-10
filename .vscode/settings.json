@@ -10,6 +10,7 @@
 		"iterator": "c",
 		"vector": "c",
 		"random": "c",
-		"queue": "c"
+		"queue": "c",
+		"verify_map.h": "c"
 	}
 }
