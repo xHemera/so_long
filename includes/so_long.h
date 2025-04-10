@@ -6,7 +6,7 @@
 /*   By: tobesnar <tobesnar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 10:39:55 by tobesnar          #+#    #+#             */
-/*   Updated: 2025/02/04 13:14:20 by tobesnar         ###   ########.fr       */
+/*   Updated: 2025/04/10 16:42:59 by tobesnar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,9 @@ typedef struct s_data
 	int			height;
 	char		**map_content;
 	int			mp;
+	char		**clone;
+	int			rows;
+	int			cols;
 }	t_data;
 
 void		set_sprite(t_data *data);
@@ -109,5 +112,24 @@ char		*ft_next(char *buffer);
 char		*ft_line(char *buffer);
 char		*read_file(int fd, char *res);
 char		*get_next_line(int fd);
+
+void		check_unreachable_exit(t_data *data, char **map,
+				int rows, int cols);
+void		check_unreachable_collectibles(t_data *data, char **map,
+				int rows, int cols);
+void		flood_fill(t_data *data, int x, int y);
+void		free_clone(t_data *data, int rows);
+char		**clone_map(t_data *data);
+void		error_message(t_data *data, int player_count,
+				int exit_count, int collectible_count);
+void		count_map_elements(t_data *data,
+				int *player_count, int *exit_count, int *collectible_count);
+void		validate_map(t_data *data);
+void		check_reachability(t_data *data);
+void		validate_playable_map(t_data *data);
+void		validate_rectangle(t_data *data);
+void		validate_top_and_bottom_walls(t_data *data);
+void		validate_side_walls(t_data *data);
+void		validate_walls_and_rectangle(t_data *data);
 
 #endif

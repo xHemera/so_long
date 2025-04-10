@@ -8,7 +8,6 @@ OBJDIR	= obj
 INCDIR	= includes
 LIBDIR	= includes/libft
 MLXDIR	= includes/mlx
-VERIFDIR= $(SRCDIR)/verif
 
 # Sources
 SRC		= $(SRCDIR)/main.c \
@@ -19,10 +18,9 @@ SRC		= $(SRCDIR)/main.c \
 		  $(SRCDIR)/get_next_line_utils.c \
 		  $(SRCDIR)/map_checker.c \
 		  $(SRCDIR)/ft_isonly.c \
-		  $(VERIFDIR)/copy_map.c \
-		  $(VERIFDIR)/floodfill.c \
-		  $(VERIFDIR)/free_map_copy.c \
-		  $(VERIFDIR)/is_path_valid.c
+		  $(SRCDIR)/verify_chemin.c \
+		  $(SRCDIR)/verify_element.c \
+		  $(SRCDIR)/verify_map.c
 
 OBJ		= $(SRC:.c=.o)
 OBJF	= $(OBJ:$(SRCDIR)/%=$(OBJDIR)/%)
